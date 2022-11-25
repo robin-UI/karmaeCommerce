@@ -1,0 +1,116 @@
+ <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>Shopping Cart</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="category.html">Cart</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+    <!--================Cart Area =================-->
+    <section class="cart_area">
+        <div class="container">
+            {{#if products}}
+            <div class="cart_inner">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Product</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                                <th scope="col">Sub-Total</th>
+                                <th scope="col">Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each products}}
+                            <tr>
+                                <td>
+                                    <div class="media">
+                                        <div class="d-flex">
+                                            <img src="/image/{{product.image.[0]}}" alt="" style="height: 150px; widgth: 150px">
+                                        </div>
+                                        <div class="media-body">
+                                            <p>{{product.productname}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>₹ {{product.price}}</h5>
+                                </td>
+                                <td>
+                                    <div class="product_count">
+                                        <input type="text" name="qty" id="{{this.product._id}}" maxlength="12" value="{{this.quantity}}" title="Quantity:" 
+                                            class="input-text qty">
+                                        <button onclick="changeQuantity(event,'{{this._id}}','{{this.product._id}}','{{../user._id}}',1)"
+                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                        <button onclick="changeQuantity(event,'{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)"
+                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <h5>₹ {{subTotal}}</h5>
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary" onclick="deleteCartProduct('{{this.product._id}}')" >Delete</button>
+                                </td>
+                            </tr>
+                            {{/each}}
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <h5>Total</h5>
+                                </td>
+                                <td>
+                                    <h5>₹ {{totalAmount}}</h5>
+                                </td>
+                            </tr>
+                            <tr class="out_button_area">
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <div class="checkout_btn_inner d-flex align-items-center">
+                                        <a class="gray_btn" href="/store">Continue Shopping</a>
+                                        <a class="primary-btn" href="/place-order">Proceed to checkout</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {{else}}
+            <div class="container">
+                <p>You have no product yet please purchase products</p>
+                <a class="gray_btn" href="/store">Shop now</a>
+            </div>
+            {{/if}}
+        </div>
+    </section>
+    <!--================End Cart Area =================-->

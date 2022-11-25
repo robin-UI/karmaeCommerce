@@ -1,0 +1,146 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Checkout</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/view-cart">Checkout</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<section class="checkout_area section_gap">
+    <div class="container">
+        {{!-- <div class="cupon_area">
+            <div class="check_title">
+                <h2>Have a coupon? <a href="#">Click here to enter your code </a></h2>
+            </div>
+            <input type="text" placeholder="Enter coupon code">
+            <a class="tp_btn" href="#">Apply Coupon</a>
+        </div> --}}
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Profile Details</h3>
+                    <form class="row">
+                        <div class="col-md-6 form-group p_star">
+                            <label for="name">Name</label>
+                            <input type="text" class="form-control" id="first" name="name" >
+                            {{!-- <span data-placeholder="First name"></span> --}}
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <label for="Last Name">Last Name</label>
+                            <input type="text" class="form-control" id="last" name="LastName">
+                            {{!-- <span class="placeholder" data-placeholder="Last name"></span> --}}
+                        </div>
+                        {{!-- <div class="col-md-12 form-group">
+                            <input type="text" class="form-control" id="company" name="company"
+                                placeholder="Company name">
+                        </div> --}}
+                        <div class="col-md-6 form-group p_star">
+                            <label for="Number">Number</label>
+                            <input type="text" class="form-control" id="number" name="number" value="{{user.phone}}">
+                            {{!-- <span data-placeholder="Phone number"></span> --}}
+                        </div>
+                        <div class="col-md-6 form-group p_star">
+                            <label for="Email">Email</label>
+                            <input type="text" class="form-control" id="email" name="email" >
+                            {{!-- <span data-placeholder="Email Address"></span> --}}
+                        </div>
+                        <button onclick="formSubmit()">submit</button>
+                    </form>
+
+                        <div class="col-md-12 form-group p_star border">
+                            {{!-- <select class="country_select">
+                                <option value="1">Country</option>
+                                <option value="2">Country</option>
+                                <option value="4">Country</option>
+                            </select> --}}
+                            <label >
+                                Countries
+                                <input mbsc-input id="demo-country-picker" data-dropdown="true" data-input-style="box"
+                                    data-label-style="stacked" placeholder="Please select..." />
+                            </label>
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <label for="Address line 01">Address line 01</label>
+                            <input type="text" class="form-control" id="add1" name="add1">
+                            {{!-- <span class="placeholder" data-placeholder=""></span> --}}
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <label for="Address line 02">Address line 02</label>
+                            <input type="text" class="form-control" id="add2" name="add2">
+                            {{!-- <span class="placeholder" data-placeholder="Address line 02"></span> --}}
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <label for="Town/City">Town/City</label>
+                            <input type="text" class="form-control" id="city" name="city">
+                            {{!-- <span class="placeholder" data-placeholder="Town/City"></span> --}}
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                            <label for="District">District</label>
+                            <input type="text" class="form-control" id="city" name="District">
+                            {{!-- <span class="placeholder" data-placeholder="District"></span> --}}
+                            {{!-- <select class="country_select">
+                                <option value="1">District</option>
+                                <option value="2">District</option>
+                                <option value="4">District</option>
+                            </select> --}}
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <label for="Postcode/ZIP">Postcode/ZIP</label>
+                            <input type="text" class="form-control" id="zip" name="zip" >
+                        </div>
+                        {{!-- <div class="col-md-12 form-group">
+                            <div class="creat_account">
+                                <input type="checkbox" id="f-option2" name="selector">
+                                <label for="f-option2">Create an account?</label>
+                            </div>
+                        </div> --}}
+                        <div class="col-md-12 form-group">
+                            <div class="creat_account">
+                                <h3>Shipping Details</h3>
+                                {{!-- <input type="checkbox" id="f-option3" name="selector">
+                                <label for="f-option3">Ship to a different address?</label> --}}
+                            </div>
+                            <textarea class="form-control" name="message" id="message" rows="1"
+                                placeholder="Order Notes"></textarea>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <button type="submit" value="submit" class="primary-btn">Update Profile</button>
+                        </div>
+                    
+                </div>
+                <div class="col-lg-4">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    
+    function formSubmit() {
+        let firstname = document.getElementById("first").value;
+        let lastname = document.getElementById("last").value;
+        let email = document.getElementById("email").value;
+        let number = document.getElementById("number").value;
+        let objs = {firstname, lastname, email, number}
+        $.ajax({
+            url: "/place-name",
+            method: "post",
+            data: objs,
+            success: (response) => {
+                console.log("hidden")
+                console.log(response)
+            }
+        });
+    }
+
+</script>

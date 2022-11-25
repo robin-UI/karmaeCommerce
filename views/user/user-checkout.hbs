@@ -1,0 +1,322 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Checkout</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="/view-cart">Checkout</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+<!--================Checkout Area =================-->
+<section class="checkout_area section_gap">
+    <div class="container">
+
+        <div class="billing_details">
+            <div class="row">
+                <div class="col-lg-8">
+
+                    <h3>Billing Details</h3>
+                    <form id="coupon-form" >
+                    <div class="cupon_area col-md-7">
+                        <div class="check_title">
+                            <h2>Have a coupon? <a href="#">Click here to enter your code </a></h2>
+                        </div>
+                        <input type="text" class="ml-0 form-control" id="first" name="coupon">
+                        <button type="submit" class="ml-0 tp_btn">Apply Coupon</button>
+                    </div>
+                    </form>
+                    {{!-- Add Address --}}
+                    <h3>Your address</h3>
+                    <form id="checkout">
+                        <div class="col-lg-7">
+                            {{#if address}}
+                            <p>Pleace select any address</p>
+                            {{else}}
+                            <p>You did not add any address pleas add address</p>
+                            {{/if}}
+                            <input type="text" name="userId" value="{{userId}}" hidden>
+                            {{#each address}}
+                            <div class="p-0 form-check">
+                                <div class="card border border-dark mb-3 rounded-0">
+                                    <div class="card-header  py-0"><input class="radion_btn mx-2" type="radio"
+                                            name="checkoutAddress" value="{{this._id}}" id="flexRadioDefault1" required
+                                            checked>{{this.address.name}} {{this.address.LastName}}
+                                    </div>
+                                    <div class="card-body text-dark">
+                                        <p class="card-text">{{this.address.add1}} {{this.address.add2}}</p>
+                                        <p class="card-text">{{this.address.city}} {{this.address.states}}</p>
+                                        <p class="card-text">{{this.address.country}} {{this.address.pincode}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {{/each}}
+                        </div>
+
+                </div>
+                <div class="col-lg-4">
+
+                    <div class="order_box">
+                        <h2>Your Order</h2>
+                        <ul class="list">
+                            <li><a href="#">Product <span>Total</span></a></li>
+                            {{#each products}}
+                            <li><a href="/singleProducts/{{product._id}}">{{product.productName}}<span class="middle">x
+                                        0{{quantity}}</span> <span class="last">₹ {{subTotal}}</span></a></li>
+                            {{/each}}
+                        </ul>
+                        <ul class="list list_2">
+                            <li><a href="#">Subtotal <span>₹ {{totalAmount}}.00</span></a></li>
+                            <li><a href="#">Descount <span>Flat rate: ₹ 00.00</span></a></li>
+                            <li><a href="#">Wallet amoutnt <span>₹ {{user.wallet}}</span></a></li>
+                            <li><a href="#">Total <span>₹ {{totalAmount}}.00</span></a></li>
+                        </ul>
+                        {{!-- <div class="payment_item">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option5" name="paymentMethod" value="wallet" required>
+                                <label for="f-option5">Pay using Wallet</label>
+                                <div class="check"></div>
+                            </div>
+                            <p>Payment with your wallet</p>
+                        </div> --}}
+                        <div class="payment_item">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option5" name="paymentMethod" value="COD" required>
+                                <label for="f-option5">Cash on Delivary</label>
+                                <div class="check"></div>
+                            </div>
+                            <p>Payment will accept when product is reseved to your home or your dedicated address</p>
+                        </div>
+                        <div class="payment_item active">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option6" name="paymentMethod" value="paypal">
+                                <label for="f-option6">Paypal </label>
+                                <img src="img/product/card.jpg" alt="">
+                                <div class="check"></div>
+                            </div>
+                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
+                                account.</p>
+                        </div>
+                        <div class="payment_item active">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option7" name="paymentMethod" value="razorpay">
+                                <label for="f-option7">RazerPay</label>
+                                <img src="/img/Razorpay_logo.svg.png" alt="">
+                                <div class="check"></div>
+                            </div>
+                            <p>RazerPay; you can pay with your UPI or any payment app</p>
+                        </div>
+                        <div class="creat_account">
+                            <input type="checkbox" id="f-option4">
+                            <label for="f-option4">I’ve read and accept the </label>
+                            <a href="/user-tandc">terms & conditions*</a>
+                        </div>
+                        <button class="primary-btn border-0" type="submit">Proceed to Payment</button>
+                    </div>
+                    </form>
+                </div>
+
+                <div class="col-lg-8">
+
+                    <p>
+                        <a class="primary-btn rounded-0" data-toggle="collapse" href="#collapseExample" role="button"
+                            aria-expanded="false" aria-controls="collapseExample">
+                            Add new address +
+                        </a>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <form class="row contact_form" action="/add-address" method="post" novalidate="novalidate"
+                                enctype="application/x-www-form-urlencoded">
+                                <div class="col-md-6 form-group p_star">
+                                    <label for="Name">Name</label>
+                                    <input type="text" class="form-control" id="first" name="name"
+                                        value="{{user.name}}">
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <label for="Last Name">Last Name</label>
+                                    <input type="text" class="form-control" id="last" name="LastName">
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <label for="Number">Number</label>
+                                    <input type="text" class="form-control" id="number" name="number"
+                                        value="{{user.phone}}">
+                                </div>
+                                <div class="col-md-6 form-group p_star">
+                                    <label for="Email">Email</label>
+                                    <input type="text" class="form-control" id="email" name="compemailany"
+                                        value="{{user.email}}">
+                                </div>
+                                <div class="col-md-12 form-group p_star border">
+                                    <label>
+                                        Countries
+                                        <input mbsc-input id="demo-country-picker" data-dropdown="true"
+                                            data-input-style="box" data-label-style="stacked" name="country"
+                                            placeholder="Please select..." />
+                                    </label>
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <label for="Address line 01">Address line 01</label>
+                                    <input type="text" class="form-control" id="add1" name="add1">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <label for="Address line 02">Address line 02</label>
+                                    <input type="text" class="form-control" id="add2" name="add2">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <label for="Town/City">Town/City</label>
+                                    <input type="text" class="form-control" id="city" name="city">
+                                </div>
+                                <div class="col-md-12 form-group p_star">
+                                    <label for="District">District</label>
+                                    <input type="text" class="form-control" id="city" name="District">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label for="Postcode/ZIP">Postcode/ZIP</label>
+                                    <input type="text" class="form-control" id="zip" name="zip">
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <button class="primary-btn border-0  rounded-0" type="submit">Add address</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Checkout Area =================-->
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+  $("#checkout").submit((event) => {
+  event.preventDefault();
+  $.ajax({
+    url: "/place-order",
+    method: "post",
+    data: $("#checkout").serialize(),
+    success: (response) => {
+      if (response.cod) {
+        swal("Success!", "order created", "success",{button:false, timer:800}).then(()=>{
+          location.href = "/store";
+        })
+      }else if(response.walletLow){
+          swal("Info!", "Wallet insufficient balance", "warning")
+      }else if( response.walletSuccess){
+        swal("Success!", "order created", "success",{button:false, timer:800}).then(()=>{
+          location.href = "/store";
+        })
+      }
+      else if(response.razorpay == true){
+          razorpayPayment(response)
+      }else if (response.payer.payment_method = 'paypal'){
+           for (let i = 0; i < response.links.length; i++) {
+          if (response.links[i].rel === "approval_url") {
+            location.href = response.links[i].href;
+          }
+        }
+      }
+      
+    },
+  });
+});
+
+
+function razorpayPayment(order){
+  console.log(order)
+  var options = {
+    key: "rzp_test_uElih1SHqlgkmN", // Enter the Key ID generated from the Dashboard
+    amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+    currency: "INR",
+    name: "Cozmo",
+    description: "Test Transaction",
+    image: "https://example.com/your_logo",
+    order_id: order.id,  //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+    handler: function (response){
+        
+        verifyPayment(response, order)
+    },
+    prefill: {
+        "name": "Gaurav Kumar",
+        "email": "gaurav.kumar@example.com",
+        "contact": "9999999999"
+    },
+    notes: {
+        "address": "Razorpay Corporate Office"
+    },
+    theme: {
+        "color": "#3399cc"
+    }
+};
+
+var rzp1 = new Razorpay(options);
+  rzp1.open();
+  
+}
+
+function verifyPayment(payment, order){
+  console.log('hiiiii')
+    $.ajax({
+      url: '/verify-payment', 
+      data: {
+        payment,
+        order
+      },
+      method: 'post',
+      success: (response)=>{
+        if (response.razor){
+          location.href='/store'
+        }else {
+          alert('payment failed')
+        }
+      }
+
+    })
+}
+
+
+$('#coupon-form').submit((e)=>{
+  e.preventDefault()
+  $.ajax({
+    url:'/coupon',
+    method: 'post',
+    data:$('#coupon-form').serialize(),
+    success: (amount) => {
+        console.log(amount)
+        if (amount.status) {
+            
+                swal("Success!", "Coupon Applied", "success").then(() => {
+                    document.getElementById('offer-price').innerHTML = amount.discountamount
+                    document.getElementById('total-price').innerHTML = amount.grandtotal
+                })
+            } else if (amount.used) {
+                swal("Info!", "Coupon already used!", "warning").then(() => {
+                    document.getElementById('offer-price').innerHTML = 0
+                })
+            } else if (amount.expired) {
+                swal("Info!", "Coupon Expired", "warning").then(() => {
+                    document.getElementById('offer-price').innerHTML = 0
+                })
+            } else if (amount.small) {
+                swal("Info!", "Total amount should be within 1000 and 5000 to apply coupon", "warning").then(() => {
+                    document.getElementById('offer-price').innerHTML = 0
+                })
+            } else {
+                swal("Oops!", "Coupon does not exist", "error").then(() => {
+                    document.getElementById('offer-price').innerHTML = 0
+                })
+            }
+    }
+  })
+})
+
+</script>

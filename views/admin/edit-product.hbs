@@ -1,0 +1,99 @@
+
+<div class="main-panel">
+    <div class="content-wrapper">
+
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Product Details</h4>
+                        <p class="card-description"> This will show to the coustmers </p>
+                        <form class="forms-sample" action="/admin/edit-product/{{product._id}}" method="POST"
+                            enctype="multipart/form-data">
+                            <div class="form-group row">
+                                <label for="exampleInputUsername2" class="col-sm-3 col-form-label"  >Product ID</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="exampleInputUsername2"
+                                        placeholder="example &quot;#1&quot" name="productID" value={{product.productID}}>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Product Name</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" id="exampleInputEmail2"
+                                     name="productName" value="{{product.productName}}" >
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="exampleSelectGender col-sm-3 col-form-label">Price</label>
+                                <div class="input-group col-sm-9">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-gradient-primary text-white">₹</span>
+                                    </div>
+                                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{product.price}}"
+                                        name="price">
+                                    <label for="exampleSelectGender col-sm-3 col-form-label">ExtraPrice</label>
+                                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)" value="{{product.extraPrice}}"
+                                        name="extraPrice">
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">.00</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="exampleSelectGender">Category</label>
+                                <select class=" btn btn-block btn-outline-primary dropdown-toggle"
+                                    id="exampleSelectGender" style="width: 100%;" name="category">
+                                    <option hidden selected value="{{product.category}}">{{findOne.category}}</option>
+                                        {{#each data}}
+                                        <option name="category" value="{{this._id}}">{{this.category}}</option>
+                                        {{/each}}
+                                </select>
+                            </div>
+
+                            <div class="form-group row">
+                                <label for="exampleTextarea1">Description</label>
+                                <textarea class="form-control" id="exampleTextarea1" rows="4"
+                                    name="textarea">{{product.textarea}}</textarea>
+                            </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Upload Product Images</h4>
+                        <p class="card-description"> You product images </p>
+                        <img style="height: 350px;" src="/image/{{product.image.[0]}}" alt="Product Image">
+                        <div class="form-group">
+                        <label>File upload</label>
+                        <input type="file" name="img" class="file-upload-default" value="/image/{{product.image}}">
+                        <div class="input-group col-xs-12">
+                          <input type="text" name="img" class="form-control file-upload-info" multiple disabled placeholder="Upload Image" value="/image/{{product.image}}">
+                          <span class="input-group-append">
+                            <button name="img" class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+
+                       
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="d-flex align-items-center">
+            <input type="submit" class="btn btn-gradient-primary me-3 "></input>
+            <h4 class="">Edit product and submit... {{product.productName}} </h4>
+            </form>
+        </div>
+
+        
+
+    </div>
+</div>

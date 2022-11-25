@@ -1,0 +1,42 @@
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="row">
+            <div class="col-md-6 grid-margin stretch-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Add Category</h4>
+                        <form class="forms-sample" method="post" action="/admin/edit-category/{{data._id}}"
+                            enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="exampleInputUsername1">Category Name</label>
+                                <input type="text" class="form-control" id="exampleInputUsername1"
+                                    value="{{this.data.category}}" name="category">
+                            </div>
+
+                            <div class="form-group">
+                        <label>File upload</label>
+                        <input type="file" name="img" class="file-upload-default" value="{{data.image}}">
+                        <div class="input-group col-xs-12">
+                          <input type="text" name="img" class="form-control file-upload-info" disabled placeholder="Upload Image" value="{{data.image}}">
+                          <span class="input-group-append">
+                            <button name="img" class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
+                          </span>
+                        </div>
+                      </div>
+
+                            <button type="submit" class="btn btn-gradient-primary me-2">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<img style="height: 350px;" src="/image/{{data.image}}" alt="Product Image">
