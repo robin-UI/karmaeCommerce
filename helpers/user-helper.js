@@ -10,8 +10,8 @@ const { resolve } = require('path')
 const Razorpay = require('razorpay');
 
 var instance = new Razorpay({
-  key_id: process.env.KEY_ID,
-  key_secret: process.env.KEY_SECRET,
+  key_id: "rzp_test_uElih1SHqlgkmN",
+  key_secret: "E7k9AHXMbLuDlCSBBMozjFYt",
 });
 
 module.exports = {
@@ -755,12 +755,12 @@ module.exports = {
           let couponcode = await db
             .get()
             .collection(collection.COUPON)
-            .findOne({ couponname: body.coupon });
+            .findOne({ couponName: body.coupon });
           if (couponcode) {
             let user = await db
               .get()
               .collection(collection.COUPON)
-              .findOne({ couponname: body.coupon, user: userId });
+              .findOne({ couponName: body.coupon, user: userId });
             if (user) {
               response.coupon = false;
               response.usedcoupon = true;

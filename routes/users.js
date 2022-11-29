@@ -182,6 +182,7 @@ router.post('/delete-cart-product', async (req, res) => {
 router.post('/apply-coupon', async (req, res)=>{
   let userLog = req.session.user;
   req.session.couponData = req.body.coupon;
+  console.log("request coupon hear");
   console.log(req.body)
   let amount = {};
   helpers.couponCheck(userLog._id, req.body).then((response) => {

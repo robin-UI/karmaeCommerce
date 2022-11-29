@@ -26,7 +26,7 @@
                     <form id="coupon-form" >
                     <div class="cupon_area col-md-7">
                         <div class="check_title">
-                            <h2>Have a coupon? <a href="#">Click here to enter your code </a></h2>
+                            <h2>Have a coupon? <a href="/">Click here to enter your code </a></h2>
                         </div>
                         <input type="text" class="ml-0 form-control" id="first" name="coupon">
                         <button type="submit" class="ml-0 tp_btn">Apply Coupon</button>
@@ -287,13 +287,12 @@ function verifyPayment(payment, order){
 $('#coupon-form').submit((e)=>{
   e.preventDefault()
   $.ajax({
-    url:'/coupon',
+    url:'/apply-coupon',
     method: 'post',
     data:$('#coupon-form').serialize(),
     success: (amount) => {
         console.log(amount)
         if (amount.status) {
-            
                 swal("Success!", "Coupon Applied", "success").then(() => {
                     document.getElementById('offer-price').innerHTML = amount.discountamount
                     document.getElementById('total-price').innerHTML = amount.grandtotal
