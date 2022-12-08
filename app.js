@@ -1,83 +1,76 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
-const hbs=require('express-handlebars');
+var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var bodyParser = require('body-parser')
-const session=require('express-session')
-var db = require('./config/connection')
+var session = require("express-session");
 
+var db = require("./config/connection");
 var adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
-
+var hbs = require("express-handlebars");
 var app = express();
-
-// parse application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: false }))
-// parse application/json
-app.use(bodyParser.json())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-app.engine('hbs',hbs.engine({extname:'hbs',defaultLayout:'layout',layoutsDir:__dirname+'/views/layout/',partialsDir:__dirname+'/views/partials',
-helpers: {
-  inc: function (value, options) {
-    return parseInt(value) + 1;
-  }
-}
-}))
+app.engine(
+  "hbs",
+  hbs.engine({
+    extname: "hbs",
+    defaultLayout: "layout",
+    layoutsDir: __dirname + "/views/layout/",
+    partialsDir: __dirname + "/views/partials",
+  })
+);
 
-let Hbs = hbs.create({})
+db.connect((err) => {
+  if (err) console.log("connection error" + err);
+  else console.log("database connected");
+});
 
-Hbs.handlebars.registerHelper('if_eq', function(a,b,opts) {
-  if(a == b)
-    return opts.fn(this)
-  else
-    return opts.inverse(this);
-})
-
-app.use(session({
-  secret: "thisismyscreetkey",
-  cookie: {
-    sameSite: "strict",
-    maxAge: 999999999999
-  }
-}));
-
-app.use(logger('dev'));
+// app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/user/')));
+app.use(express.static(path.join(__dirname, 'public/admin/')));
 
-app.use('/', usersRouter);
+app.use(
+  session({
+    secret: "key",  
+    resave: false,
+    saveUninitialized: false,
+    cookie: { maxAge: 3600000 },
+  })
+);
+
+app.use((req, res, next) => {
+  if (!req.user) {
+    res.header("cache-control", "private,no-cache,no-store,must revalidate");
+    res.header("Express", "-2");
+  }
+  next();
+});
+app.use((req, res, next) => {
+  if (!req.admin) {
+    res.header("cache-control", "private,no-cache,no-store,must revalidate");
+    res.header("Express", "-2");
+  }
+  next();
+});
+
 app.use('/admin', adminRouter);
+app.use('/', usersRouter);
 
-//User public files
-app.use(express.static(path.join(__dirname, 'public/user')));
-app.use(express.static(path.join(__dirname, 'public/user/css')));
-app.use(express.static(path.join(__dirname, 'public/user/js')));
-app.use(express.static(path.join(__dirname, 'public/user/image')));
-
-
-//Admin public files
-app.use(express.static(path.join(__dirname, 'public/admin')));
-app.use(express.static(path.join(__dirname, 'public/admin/assets')));
-app.use(express.static(path.join(__dirname, 'public/admin/assets/css')));
-app.use(express.static(path.join(__dirname, 'public/admin/assets')));
-app.use(express.static(path.join(__dirname, 'public/admin/assets')));
-app.use(express.static(path.join(__dirname, 'public/admin/assets')));
-// app.use(express.static(path.join(__dirname, 'public/image')));
-
-
-
-
-//DB connections💽
-db.connect((err)=>{
-  if(err) console.log('connection error' + err)
-  else console.log("database connected")
+app.get('/admin/*',(req, res)=>{
+  res.render('admin/404')
 })
 
+app.get("*", (req, res) => {
+  res.render("user/404",{userHead:true});
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

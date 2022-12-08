@@ -22,10 +22,10 @@
                 <div class="login_box_img">
                     <img class="img-fluid" src="img/login.jpg" alt="">
                     <div class="hover">
-                        <h4>New to our website?</h4>
+                        <h4>I have an account?</h4>
                         <p>There are advances being made in science and technology everyday, and a good example of this
                             is the</p>
-                        <a class="primary-btn" href="registration.html">Create an Account</a>
+                        <a class="primary-btn" href="/login">Login Account</a>
                     </div>
                 </div>
             </div>
@@ -34,34 +34,37 @@
                     <h3>Create new account</h3>
                     <form class="row login_form" action="/signup" method="post" id="contactForm" enctype="application/x-www-form-urlencoded"
                         novalidate="novalidate">
+                        {{#if signErr}}
+                            <p class="error text-center" style="color: red;">Username already
+                            taken</p>
+                        {{/if}}
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Username"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" >
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required>
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="email" class="form-control" id="name" name="email" placeholder="E-mail"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail'">
+                            <input type="email" class="form-control" id="name" name="Email" placeholder="E-mail"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'E-mail'" required>
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="number" class="form-control" id="name" name="phone" placeholder="Phone Number"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'">
+                            <input type="number" class="form-control" id="name" name="Phone" placeholder="Phone Number"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Phone Number'" required>
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="password" class="form-control" id="name" name="password" placeholder="Password"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+                            <input type="password" class="form-control" id="name" name="Password" placeholder="Password"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required>
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="password" class="form-control" id="name" name="passwordConform" placeholder="Conform Password"
+                            <input type="password" class="form-control" id="name" placeholder="Conform Password"
                                 onfocus="this.placeholder = ''" onblur="this.placeholder = 'Conform Password'">
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="name" name="referralcode" placeholder="Referal Code"
-                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Referal Code'">
+                            <input type="text" class="form-control" id="name" name="referralCode" placeholder="Referal Code (if you have any!)"
+                                onfocus="this.placeholder = ''" onblur="this.placeholder = 'Referal Code (if you have any!)'">
                         </div>
                         <div class="col-md-12 form-group"></div>
                         <div class="col-md-12 form-group">
                             <button type="submit" value="submit" class="primary-btn">Sign Up</button>
-                            <a href="#" style="text-decoration: underline;">I have an account LogIn</a>
                         </div>
                     </form>
                 </div>

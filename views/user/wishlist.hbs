@@ -1,0 +1,50 @@
+ <!-- Start Banner Area -->
+    <section class="banner-area organic-breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+                <div class="col-first">
+                    <h1>WishList</h1>
+                    <nav class="d-flex align-items-center">
+                        <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                        <a href="/cart">Cart</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Banner Area -->
+
+<div class="single-product-slider mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- single product -->
+            {{#each products}}
+				<div class="col-lg-3 col-md-6">
+					<div class="single-product">
+						<img class="img-fluid" src="/images/{{this.product.Image.[0]}}" alt="">
+						<div class="product-details">
+							<h6>{{this.product.name}}</h6>
+							<div class="price">
+								<h6>₹ {{this.product.price}}</h6>
+							</div>
+							<div class="prd-bottom">
+								<a onclick="addToCart('{{this.product._id}}')" style="cursor: pointer;" class="social-info">
+									<span class="ti-bag"></span>
+									<p class="hover-text">Add to cart</p>
+								</a>
+								<a onclick="removeWishlist('{{this.product._id}}','{{this.product.name}}')" style="cursor: pointer;" class="social-info">
+									<span class="ti-close"></span>
+									<p class="hover-text">Remove</p>
+								</a>
+								<a href="/view-product/{{this.product._id}}" class="social-info">
+									<span class="lnr lnr-move"></span>
+									<p class="hover-text">view product</p>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+            {{/each}}
+        </div>
+    </div>
+</div>

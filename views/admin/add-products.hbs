@@ -8,22 +8,16 @@
                     <div class="card-body">
                         <h4 class="card-title">Product Details</h4>
                         <p class="card-description"> This will show to the coustmers </p>
-                        <form class="forms-sample" action="/admin/add-product" method="POST"
+                        <form class="forms-sample" action="/admin/add-item" method="POST"
                             enctype="multipart/form-data">
                             <div class="form-group row">
                                 <label for="exampleInputUsername2" class="col-sm-3 col-form-label">Product ID</label>
                                 <div class="col-sm-9">
                                     <input type="text" class="form-control" id="exampleInputUsername2"
-                                        placeholder="example &quot;#1&quot" name="productID" required>
+                                        placeholder="example &quot;#1&quot" name="name" required>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="exampleInputEmail2" class="col-sm-3 col-form-label">Product Name</label>
-                                <div class="col-sm-9">
-                                    <input type="text" class="form-control" id="exampleInputEmail2"
-                                        placeholder="example &quot;T-Shirt&quot  " name="productName" required>
-                                </div>
-                            </div>
+                           
 
                             <div class="form-group row">
                                 <label for="exampleSelectGender col-sm-3 col-form-label">Price</label>
@@ -33,12 +27,6 @@
                                     </div>
                                     <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
                                         name="price" required>
-                                    <label for="exampleSelectGender col-sm-3 col-form-label">ExtraPrice</label>
-                                    <input type="number" class="form-control" aria-label="Amount (to the nearest dollar)"
-                                        name="extraPrice" required>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">.00</span>
-                                    </div>
                                 </div>
                             </div>
 
@@ -48,8 +36,8 @@
                                 <select class=" btn btn-block btn-outline-primary dropdown-toggle"
                                     id="exampleSelectGender" style="width: 100%;" name="category" required>
                                     <option hidden selected >Select Catagory</option>
-                                    {{#each data}}
-                                        <option name="category" value="{{this._id}}">{{this.category}}</option>
+                                    {{#each categories}}
+                                        <option name="category" value="{{this.category}}">{{this.category}}</option>
                                     {{/each}}
                                 </select>
                             </div>
@@ -57,7 +45,7 @@
                             <div class="form-group row">
                                 <label for="exampleTextarea1">Description</label>
                                 <textarea class="form-control" id="exampleTextarea1" rows="4"
-                                    name="textarea" required></textarea>
+                                    name="description" required></textarea>
                             </div>
                     </div>
                 </div>
@@ -71,17 +59,8 @@
 
                         <div class="form-group">
                         <label>File upload</label>
-                        {{!-- <input type="file" name="img" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                          <input type="text" name="img" class="form-control file-upload-info" multiple disabled placeholder="Upload Image">
-                          <span class="input-group-append">
-                            <button name="img" class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                          </span>
-                        </div> --}}
-                        <input type="file" class="btn btn-gradient-primary me-2" name="img" required>
+                        <input type="file" class="btn btn-gradient-primary me-2" name="image" required multiple>
                       </div>
-
-                       
                     </div>
                 </div>
             </div>

@@ -17,29 +17,40 @@
 						<ul class="nav navbar-nav menu_nav ml-auto">
 							<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
 							<li class="nav-item submenu ">
-								<a href="/store" class="nav-link dropdown-toggle"  role="button" aria-haspopup="true"
+								<a href="/shop" class="nav-link dropdown-toggle"  role="button" aria-haspopup="true"
 								 aria-expanded="false">Shop</a>
 							</li>
 							<li class="nav-item submenu ">
-								<a href="/blog" class="nav-link " role="button" aria-haspopup="true"
-								 aria-expanded="false">Blog</a>
+								<a href="/user-profile" class="nav-link " role="button" aria-haspopup="true"
+								 aria-expanded="false">Profile</a>
 							</li>
 							<li class="nav-item submenu ">
-								<a href="/contact" class="nav-link "  role="button" aria-haspopup="true"
-								 aria-expanded="false">Contact</a>
+								<a href="/order" class="nav-link "  role="button" aria-haspopup="true"
+								 aria-expanded="false">Orders</a>
 							</li>
 							<li class="nav-item submenu ">
+								{{#if userLog.username}}
+									<a href="#" class="dropdown-toggle primary-btn" data-toggle="dropdown" role="button" aria-haspopup="true"
+								 aria-expanded="false" style=" padding: 0 10px; border-radius: 0px;" >{{userLog.username}}</a>
+								<ul class="dropdown-menu">
+
+									<li class="nav-item"><a class="nav-link" href="/logout">Logout</a></li>
+								</ul>
+								{{else}}
 								<a href="#" class="dropdown-toggle primary-btn" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false" style=" padding: 0 10px; border-radius: 0px;" >Login / SignUp</a>
 								<ul class="dropdown-menu">
+
 									<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 									<li class="nav-item"><a class="nav-link" href="/signup">SignUp</a></li>
 								</ul>
+								{{/if}}
 							</li>
 						</ul>
 						
 						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="/view-cart" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a href="/wishlist" class="cart"><span class="lnr lnr-heart"></span></a></li>
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
 							</li>

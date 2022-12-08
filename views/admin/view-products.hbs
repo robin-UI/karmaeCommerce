@@ -11,20 +11,20 @@
                                 <th> Product </th>
                                 <th> Product name </th>
                                 <th> Amount </th>
-                                {{!-- <th> Description </th> --}}
+                                <th> Category </th>
                                 <th> Edit</th>
                                 <th> Delete</th>
                             </tr>
                         </thead>
                         <tbody>
-                                {{#each data}}
+                                {{#each products}}
                             <tr>
                                 <td class="py-1">
-                                    <img src="/image/{{image.[0]}}" alt="image" />
+                                    <img src="/images/{{this.Image.[0]}}" alt="image" />
                                 </td>
-                                <td> {{productName}} </td>
+                                <td> {{name}} </td>
                                 <td> ₹ {{price}} </td>
-                                {{!-- <td> {{textarea}} </td> --}}
+                                <td> {{category}} </td>
                                 <td><a class="mdi mdi-tooltip-edit" href="/admin/edit-product/{{this._id}}"></a></td>
                                 <td><a class="mdi mdi-delete" href="/admin/delete-product/{{this._id}}"></a></td>
                             </tr>

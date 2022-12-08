@@ -36,34 +36,34 @@
                                 <td>
                                     <div class="media">
                                         <div class="d-flex">
-                                            <img src="/image/{{product.image.[0]}}" alt="" style="height: 150px; widgth: 150px">
+                                            <img src="/images/{{this.product.Image.[0]}}" alt="" style="height: 150px; widgth: 150px">
                                         </div>
                                         <div class="media-body">
-                                            <p>{{product.productname}}</p>
+                                            <p>{{this.product.name}}</p>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>₹ {{product.price}}</h5>
+                                    <h5>₹ {{this.product.price}}</h5>
                                 </td>
                                 <td>
                                     <div class="product_count">
-                                        <input type="text" name="qty" id="{{this.product._id}}" maxlength="12" value="{{this.quantity}}" title="Quantity:" 
+                                        <input disabled type="text" name="qty" id="{{this.product._id}}" maxlength="12" value={{this.quantity}}  
                                             class="input-text qty">
-                                        <button onclick="changeQuantity(event,'{{this._id}}','{{this.product._id}}','{{../user._id}}',1)"
-                                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                        <button onclick="changeQuantity(event,'{{this._id}}','{{this.product._id}}','{{../user._id}}',-1)"
-                                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+                                        <button onclick="changeQuantity('{{this._id}}', '{{this.product._id}}', 1, '{{../user._id}}')"
+                                        class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                        <button onclick="changeQuantity('{{this._id}}', '{{this.product._id}}', -1, '{{../user._id}}')"
+                                        class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                                     </div>
                                 </td>
                                 <td>
-                                    <h5>₹ {{subTotal}}</h5>
+                                    <h5 id="subTotal{{this.product._id}}" >₹ {{this.product.subtotal}}</h5>
                                 </td>
                                 <td>
                                     <button class="btn btn-primary" onclick="deleteCartProduct('{{this.product._id}}')" >Delete</button>
                                 </td>
                             </tr>
-                            {{/each}}
+                        {{/each}}
                             <tr>
                                 <td>
 
@@ -75,10 +75,27 @@
 
                                 </td>
                                 <td>
-                                    <h5>Total</h5>
+                                    <h5>Cart Total</h5>
                                 </td>
                                 <td>
-                                    <h5>₹ {{totalAmount}}</h5>
+                                    <h5 id="total">₹ {{total}}</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <h5>Grand Total :</h5>
+                                </td>
+                                <td>
+                                    <h5 id="total-price">₹ {{total}}</h5>
                                 </td>
                             </tr>
                             <tr class="out_button_area">
@@ -114,3 +131,44 @@
         </div>
     </section>
     <!--================End Cart Area =================-->
+
+<script>
+      
+    $('#coupon-form').submit((e)=>{
+      e.preventDefault()
+      $.ajax({
+        url:'/coupon',
+        method: 'post',
+        data:$('#coupon-form').serialize(),
+        success: (amount) => {
+            console.log(amount)
+            if (amount.status) {
+                    swal("Success!", "Coupon Applied", "success").then(() => {
+                        document.getElementById('offer-price').innerHTML = amount.discountamount
+                        document.getElementById('total-price').innerHTML = amount.grandtotal
+                    })
+                } else if (amount.used) {
+                    swal("Info!", "Coupon already used!", "warning").then(() => {
+                        document.getElementById('offer-price').innerHTML = 0
+
+                    })
+                } else if (amount.expired) {
+                    swal("Info!", "Coupon Expired", "warning").then(() => {
+                        document.getElementById('offer-price').innerHTML = 0
+
+                    })
+                } else if (amount.small) {
+                    swal("Info!", "Total amount should be within 1000 and 5000 to apply coupon", "warning").then(() => {
+                        document.getElementById('offer-price').innerHTML = 0
+
+                    })
+                } else {
+                    swal("Oops!", "Coupon does not exist", "error").then(() => {
+                        document.getElementById('offer-price').innerHTML = 0
+
+                    })
+                }
+        }
+      })
+    })
+</script>

@@ -11,21 +11,19 @@
                         <tr>
                           <th> # </th>
                           <th> Catagory name </th>
-                          <th> Image </th>
+
                           <th> Edit </th>
                           <th> Delete </th>
                         </tr>
                       </thead>
                       <tbody>
-                        {{#each data}}
+                        {{#each categories}}
                         <tr>
-                          <td> 1 </td>
+                          <td> {{inc @index}} </td>
                           <td> {{category}} </td>
-                          <td>
-                            <img src="/image/{{image}}" alt="image" />
-                          </td>
+
                           <td> <a href="/admin/edit-catagory/{{_id}}" class="mdi mdi-tooltip-edit" ></a></td>
-                          <td> <a href="/admin/delete-catagory/{{_id}}" class="mdi mdi-delete" ></a> </td>
+                          <td> <a href="#" class="mdi mdi-delete" onclick=" deleteCategory('{{this.category}}','{{this._id}}')"></a> </td>
                         </tr>
                         {{/each}}
                       </tbody>
