@@ -1,0 +1,309 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+			<div class="col-first">
+				<h1>Product Details Page</h1>
+				<nav class="d-flex align-items-center">
+					<a href="index.html">Home<span class="lnr lnr-arrow-right"></span></a>
+					<a href="#">Shop<span class="lnr lnr-arrow-right"></span></a>
+					<a href="single-product.html">product-details</a>
+				</nav>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- End Banner Area -->
+
+
+
+<!--================Product Description Area =================-->
+<section class="product_description_area">
+	<div class="container">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+			<li class="nav-item">
+				<a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+					aria-selected="true">DashBoard</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
+					aria-controls="profile" aria-selected="false">Accound Details</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
+					aria-controls="contact" aria-selected="false">Edit Profile</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review"
+					aria-selected="false">Address</a>
+			</li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+			<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+				<div class="">
+					<div class="review_box">
+						<h4 style="color: #ff7300; font-size: 25px; font-weight: bold;">Hello, <span style="color: #6a6161; font-size: large;">{{userLog.username}}</span></h4>
+						<p>We are the best shoes brand in hear Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi hic, blanditiis eligendi, reiciendis officia, odio aut obcaecati rem iusto dolorem nobis rerum? Numquam minima sed ducimus possimus neque modi quidem? Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo sit officia cupiditate, modi quisquam nostrum reiciendis voluptatibus accusamus odit beatae libero illum blanditiis nam impedit quos quaerat id architecto ipsum!</p>
+					</div>
+				</div>
+				<!--================Contact Area =================-->
+				<section class="contact_area section_gap_bottom">
+					<div class="container">
+						<div id="mapBox" class="mapBox" data-lat="40.701083" data-lon="-74.1522848" data-zoom="13"
+							data-info="PO Box CT16122 Collins Street West, Victoria 8007, Australia."
+							data-mlat="40.701083" data-mlon="-74.1522848">
+						</div>
+						<div class="row">
+							<div class="col-lg-3">
+								<div class="contact_info">
+									<div class="info_item">
+										<i class="lnr lnr-home"></i>
+										<h6>California, United States</h6>
+										<p>Santa monica bullevard</p>
+									</div>
+									<div class="info_item">
+										<i class="lnr lnr-phone-handset"></i>
+										<h6><a href="#">00 (440) 9865 562</a></h6>
+										<p>Mon to Fri 9am to 6 pm</p>
+									</div>
+									<div class="info_item">
+										<i class="lnr lnr-envelope"></i>
+										<h6><a href="#">support@colorlib.com</a></h6>
+										<p>Send us your query anytime!</p>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-9">
+								<form class="row contact_form" action="contact_process.php" method="post"
+									id="contactForm" novalidate="novalidate">
+									<div class="col-md-6">
+										<div class="form-group">
+											<input type="text" class="form-control" id="name" name="name"
+												placeholder="Enter your name" onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'Enter your name'">
+										</div>
+										<div class="form-group">
+											<input type="email" class="form-control" id="email" name="email"
+												placeholder="Enter email address" onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'Enter email address'">
+										</div>
+										<div class="form-group">
+											<input type="text" class="form-control" id="subject" name="subject"
+												placeholder="Enter Subject" onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'Enter Subject'">
+										</div>
+									</div>
+									<div class="col-md-6">
+										<div class="form-group">
+											<textarea class="form-control" name="message" id="message" rows="1"
+												placeholder="Enter Message" onfocus="this.placeholder = ''"
+												onblur="this.placeholder = 'Enter Message'"></textarea>
+										</div>
+									</div>
+									<div class="col-md-12 text-right">
+										<button type="submit" value="submit" class="primary-btn">Send Message</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</section>
+				<!--================Contact Area =================-->
+			</div>
+			<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+				<div class="table-responsive">
+					<div class="">
+						<div class="col-lg-4ms">
+							<div class="blog_right_sidebar">
+								<aside class="single_sidebar_widget author_widget">
+									<img class="author_img rounded-circle" src="img/blog/author.png" alt="">
+									<h4>{{userLog.username}}</h4>
+									<p>Senior Video Editor</p>
+									<div class="social_icon">
+										<a href="#"><i class="fa fa-facebook"></i></a>
+										<a href="#"><i class="fa fa-twitter"></i></a>
+										<a href="#"><i class="fa fa-github"></i></a>
+										<a href="#"><i class="fa fa-behance"></i></a>
+									</div>
+									<p>Boot camps have its supporters andit sdetractors. Some people do not understand
+										why you
+										should have to spend money on boot camp when you can get. Boot camps have
+										itssuppor
+										ters andits detractors.</p>
+									<div class="br"></div>
+								</aside>
+								<aside class="single_sidebar_widget post_category_widget">
+									<h4 class="widget_title">Accound Details</h4>
+									<ul class="list cat-list">
+										<li>
+											<a class="d-flex justify-content-between">
+												<p>Email</p>
+												<p>{{userLog.Email}}</p>
+											</a>
+										</li>
+										<li>
+											<a class="d-flex justify-content-between">
+												<p>Phone</p>
+												<p>{{userLog.Phone}}</p>
+											</a>
+										</li>
+										<li>
+											<a class="d-flex justify-content-between">
+												<p>Your Referal Code</p>
+												<p>{{userLog.userReferralCode}}</p>
+											</a>
+										</li>
+										<li>
+											<a href="/show-wallet" class="d-flex justify-content-between">
+												<p>Wallet Amount <svg style="height: 20px; margin-left:5px;"
+														xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+														<path
+															d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z" />
+													</svg></p>
+												<p>{{walletDetails.wallet}} Rs</p>
+											</a>
+										</li>
+									</ul>
+									<div class="br"></div>
+								</aside>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="review_box">
+							<h4>Edit Profile Details</h4>
+							<form class="row contact_form" action="/editprofile" method="post" id="contactForm"
+								novalidate="novalidate">
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control" id="name" name="Name"
+											placeholder="Your Full name" value="{{userLog.username}}"
+											onkeyup="validatecName()">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="email" class="form-control" id="email" name="Email"
+											placeholder="Email Address" value="{{userLog.Email}}"
+											onkeyup="validatecEmail()">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control" id="number" name="Phone"
+											placeholder="Phone Number" value="{{userLog.Phone}}"
+											onkeyup="validatecPhone()">
+									</div>
+								</div>
+								<div class="col-md-12 text-right">
+									<button type="submit" value="submit" class="btn primary-btn">Submit Now</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="review_box">
+							<h4>Change Password</h4>
+							<form class="row contact_form" action="/resetpassword" method="post" id="contactForm"
+								novalidate="novalidate">
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control" id="name" name="Currentpassword"
+											placeholder="Current password" onkeyup="validateCurrentPassword()">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="email" class="form-control" id="email" name="Newpassword"
+											placeholder="New password" onkeyup="validateNewPassword()">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control" id="number" name="Confirmpassword"
+											placeholder="Conform Password" onkeyup="validateNewPassword()">
+									</div>
+								</div>
+								<div class="col-md-12 text-right">
+									<button type="submit" value="submit" class="btn primary-btn">Submit Now</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane fade " id="review" role="tabpanel" aria-labelledby="review-tab">
+				<div class="row">
+					<div class="col-lg-6">
+						{{#if address}}
+						<p>Pleace select any address</p>
+						{{else}}
+						<p>You did not add any address pleas add address</p>
+						{{/if}}
+						<input type="text" name="userId" value="{{userId}}" hidden>
+						{{#each address}}
+						<div class="p-0 form-check">
+							<div class="card border border-dark mb-3 rounded-0">
+								<div class="card-header  py-0"><input class="radion_btn mx-2" type="radio"
+										name="checkoutAddress" value="{{this._id}}" id="flexRadioDefault1" required
+										checked>{{this.address.name}} {{this.address.LastName}}
+								</div>
+								<div class="card-body text-dark">
+									<p class="card-text">{{this.address.add1}} {{this.address.add2}}</p>
+									<p class="card-text">{{this.address.city}} {{this.address.states}}</p>
+									<p class="card-text">{{this.address.country}} {{this.address.pincode}}</p>
+								</div>
+							</div>
+						</div>
+						{{/each}}
+					</div>
+					<div class="col-lg-6">
+						<div class="review_box">
+							<h4>Add a Address</h4>
+
+							<form class="row contact_form" action="/addaddress" method="post" id="contactForm"
+								novalidate="novalidate">
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control" id="name" name="Housename"
+											placeholder="House Name" onfocus="this.placeholder = ''"
+											onblur="this.placeholder = 'House Name'" onkeyup="validatecAddress()">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control" id="email" name="Streetname"
+											placeholder="Street Name" onfocus="this.placeholder = ''"
+											onblur="this.placeholder = 'Street Name'" onkeyup="validatecAddress()">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control" id="number" name="State"
+											placeholder="State" onfocus="this.placeholder = ''"
+											onblur="this.placeholder = 'State'" onkeyup="validatecAddress()">
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control" id="number" name="Pin" placeholder="PIN"
+											onfocus="this.placeholder = ''" onblur="this.placeholder = 'Pin'"
+											onkeyup="validatecAddress()">
+									</div>
+								</div>
+								<div class="col-md-12 text-right">
+									<button type="text" value="submit" class="primary-btn">Submit Now</button>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

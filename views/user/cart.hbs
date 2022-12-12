@@ -60,7 +60,7 @@
                                     <h5 id="subTotal{{this.product._id}}" >₹ {{this.product.subtotal}}</h5>
                                 </td>
                                 <td>
-                                    <button class="btn btn-primary" onclick="deleteCartProduct('{{this.product._id}}')" >Delete</button>
+                                    <button class="btn btn-primary" onclick="deleteCartProduct('{{this.product._id}}')" style=" background-color: #ff8600; border: none;">Delete</button>
                                 </td>
                             </tr>
                         {{/each}}
@@ -79,6 +79,27 @@
                                 </td>
                                 <td>
                                     <h5 id="total">₹ {{total}}</h5>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cupon_text d-flex align-items-center">
+                                        <input type="text" placeholder="Coupon Code">
+                                        <a class="primary-btn" href="#">Apply</a>
+                                        <a class="gray_btn">Close Coupon</a>
+                                    </div>
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+
+                                </td>
+                                <td>
+                                    <h5>Offer Discount :</h5>
+                                </td>
+                                <td>
+                                    <h5 id="offer-price">₹ 0</h5>
                                 </td>
                             </tr>
                             <tr>
@@ -114,7 +135,7 @@
                                 <td>
                                     <div class="checkout_btn_inner d-flex align-items-center">
                                         <a class="gray_btn" href="/store">Continue Shopping</a>
-                                        <a class="primary-btn" href="/place-order">Proceed to checkout</a>
+                                        <a class="primary-btn" href="/checkout">Proceed to checkout</a>
                                     </div>
                                 </td>
                             </tr>

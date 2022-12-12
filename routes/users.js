@@ -495,9 +495,11 @@ router.post("/change-product-quantity", verifyLogin, (req, res, next) => {
 router.get("/checkout", verifyLogin, verifyCartCount, async (req, res) => {
   let userLog = req.session.user;
   let cartCount = req.session.cartCount;
+  let products = await cartHelpers.getCartProducts(userLog._id);
   let total = await cartHelpers.getTotalAmount(userLog._id);
   userHelpers.getUserAddress(userLog._id).then((address) => {
     res.render("user/checkout", {
+      products,
       address,
       total,
       userLog,

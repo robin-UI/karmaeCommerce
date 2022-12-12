@@ -21,20 +21,8 @@
         <div class="billing_details">
             <div class="row">
                 <div class="col-lg-8">
-
-                    <h3>Billing Details</h3>
-                    <form id="coupon-form" >
-                    <div class="cupon_area col-md-7">
-                        <div class="check_title">
-                            <h2>Have a coupon? <a href="/">Click here to enter your code </a></h2>
-                        </div>
-                        <input type="text" class="ml-0 form-control" id="first" name="coupon">
-                        <button type="submit" class="ml-0 tp_btn">Apply Coupon</button>
-                    </div>
-                    </form>
                     {{!-- Add Address --}}
                     <h3>Your address</h3>
-                    <form id="checkout">
                         <div class="col-lg-7">
                             {{#if address}}
                             <p>Pleace select any address</p>
@@ -58,73 +46,7 @@
                             </div>
                             {{/each}}
                         </div>
-
-                </div>
-                <div class="col-lg-4">
-
-                    <div class="order_box">
-                        <h2>Your Order</h2>
-                        <ul class="list">
-                            <li><a href="#">Product <span>Total</span></a></li>
-                            {{#each products}}
-                            <li><a href="/singleProducts/{{product._id}}">{{product.productName}}<span class="middle">x
-                                        0{{quantity}}</span> <span class="last">₹ {{subTotal}}</span></a></li>
-                            {{/each}}
-                        </ul>
-                        <ul class="list list_2">
-                            <li><a href="#">Subtotal <span>₹ {{totalAmount}}.00</span></a></li>
-                            <li><a href="#">Descount <span>Flat rate: ₹ 00.00</span></a></li>
-                            <li><a href="#">Wallet amoutnt <span>₹ {{user.wallet}}</span></a></li>
-                            <li><a href="#">Total <span>₹ {{totalAmount}}.00</span></a></li>
-                        </ul>
-                        {{!-- <div class="payment_item">
-                            <div class="radion_btn">
-                                <input type="radio" id="f-option5" name="paymentMethod" value="wallet" required>
-                                <label for="f-option5">Pay using Wallet</label>
-                                <div class="check"></div>
-                            </div>
-                            <p>Payment with your wallet</p>
-                        </div> --}}
-                        <div class="payment_item">
-                            <div class="radion_btn">
-                                <input type="radio" id="f-option5" name="paymentMethod" value="COD" required>
-                                <label for="f-option5">Cash on Delivary</label>
-                                <div class="check"></div>
-                            </div>
-                            <p>Payment will accept when product is reseved to your home or your dedicated address</p>
-                        </div>
-                        <div class="payment_item active">
-                            <div class="radion_btn">
-                                <input type="radio" id="f-option6" name="paymentMethod" value="paypal">
-                                <label for="f-option6">Paypal </label>
-                                <img src="img/product/card.jpg" alt="">
-                                <div class="check"></div>
-                            </div>
-                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
-                                account.</p>
-                        </div>
-                        <div class="payment_item active">
-                            <div class="radion_btn">
-                                <input type="radio" id="f-option7" name="paymentMethod" value="razorpay">
-                                <label for="f-option7">RazerPay</label>
-                                <img src="/img/Razorpay_logo.svg.png" alt="">
-                                <div class="check"></div>
-                            </div>
-                            <p>RazerPay; you can pay with your UPI or any payment app</p>
-                        </div>
-                        <div class="creat_account">
-                            <input type="checkbox" id="f-option4">
-                            <label for="f-option4">I’ve read and accept the </label>
-                            <a href="/user-tandc">terms & conditions*</a>
-                        </div>
-                        <button class="primary-btn border-0" type="submit">Proceed to Payment</button>
-                    </div>
-                    </form>
-                </div>
-
-                <div class="col-lg-8">
-
-                    <p>
+                        <p>
                         <a class="primary-btn rounded-0" data-toggle="collapse" href="#collapseExample" role="button"
                             aria-expanded="false" aria-controls="collapseExample">
                             Add new address +
@@ -187,6 +109,67 @@
                             </form>
                         </div>
                     </div>
+                </div>
+                <div class="col-lg-4">
+                    <form id="checkout">
+                    <div class="order_box">
+                        <h2>Your Order</h2>
+                        <ul class="list">
+                            <li><a href="#">Product <span>Total</span></a></li>
+                            {{#each products}}
+                            <li><a href="/singleProducts/{{product._id}}">{{product.name}}<span class="middle">x
+                                        0{{quantity}}</span> <span class="last">₹ {{product.price}}</span></a></li>
+                            {{/each}}
+                        </ul>
+                        <ul class="list list_2">
+                            <li><a href="#">Subtotal <span>₹ {{total}}.00</span></a></li>
+                            <li><a href="#">Descount <span>Flat rate: ₹ 00.00</span></a></li>
+                            <li><a href="#">Wallet amoutnt <span>₹ {{user.wallet}}00.00</span></a></li>
+                            <li><a href="#">Total <span>₹ {{total}}.00</span></a></li>
+                        </ul>
+                        {{!-- <div class="payment_item">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option5" name="paymentMethod" value="wallet" required>
+                                <label for="f-option5">Pay using Wallet</label>
+                                <div class="check"></div>
+                            </div>
+                            <p>Payment with your wallet</p>
+                        </div> --}}
+                        <div class="payment_item">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option5" name="paymentMethod" value="COD" required>
+                                <label for="f-option5">Cash on Delivary</label>
+                                <div class="check"></div>
+                            </div>
+                            <p>Payment will accept when product is reseved to your home or your dedicated address</p>
+                        </div>
+                        <div class="payment_item active">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option6" name="paymentMethod" value="paypal">
+                                <label for="f-option6">Paypal </label>
+                                <img src="img/product/card.jpg" alt="">
+                                <div class="check"></div>
+                            </div>
+                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
+                                account.</p>
+                        </div>
+                        <div class="payment_item active">
+                            <div class="radion_btn">
+                                <input type="radio" id="f-option7" name="paymentMethod" value="razorpay">
+                                <label for="f-option7">RazerPay</label>
+                                <img src="/img/Razorpay_logo.svg.png" alt="">
+                                <div class="check"></div>
+                            </div>
+                            <p>RazerPay; you can pay with your UPI or any payment app</p>
+                        </div>
+                        <div class="creat_account">
+                            <input type="checkbox" id="f-option4">
+                            <label for="f-option4">I’ve read and accept the </label>
+                            <a href="/user-tandc">terms & conditions*</a>
+                        </div>
+                        <button class="primary-btn border-0" type="submit">Proceed to Payment</button>
+                    </div>
+                    </form>
                 </div>
             </div>
         </div>

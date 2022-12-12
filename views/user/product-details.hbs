@@ -23,37 +23,38 @@
 				<div class="col-lg-6">
 					<div class="s_Product_carousel">
 						<div class="single-prd-item">
-							<img class="img-fluid" src="/image/{{data.image.[0]}}" alt="">
+							<img class="img-fluid" src="/images/{{product.Image.[0]}}" alt="img">
 						</div>
 						<div class="single-prd-item">
-							<img class="img-fluid" src="/img/category/s-p1.jpg" alt="">
+							<img class="img-fluid" src="/images/{{product.Image.[1]}}" alt="img">
 						</div>
 						<div class="single-prd-item">
-							<img class="img-fluid" src="/img/category/s-p1.jpg" alt="">
+							<img class="img-fluid" src="/images/{{product.Image.[2]}}" alt="img">
 						</div>
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>{{data.productName}}</h3>
+						<h3>{{product.name}}</h3>
 	
-						<h2>₹{{data.price}}</h2>
+						<h2>₹{{product.price}}</h2>
 					
 						<ul class="list">
 							<li><a class="active" href="#"><span>Category</span> : Household</a></li>
 							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
 						</ul>
-						<p>{{data.textarea}} </p>
+						<p>{{product.description}} </p>
 						<div class="product_count">
 							<label for="qty">Quantity:</label>
-							<input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-							 class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-							<button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp; &amp; sst > 0 ) result.value--;return false;"
-							 class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
+							<input disabled type="text" name="qty" id="{{this.product._id}}" maxlength="12" value={{this.quantity}}  
+                            class="input-text qty">
+                            <button onclick="changeQuantity('{{this._id}}', '{{this.product._id}}', 1, '{{../user._id}}')"
+                            class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                            <button onclick="changeQuantity('{{this._id}}', '{{this.product._id}}', -1, '{{../user._id}}')"
+                            class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="primary-btn" href="/add-to-cart/{{data._id}}">Add to Cart</a>
+							<a class="primary-btn" onclick="addToCart('{{product._id}}')" style="cursor: pointer;" >Add to Cart</a>
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
 							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
 						</div>

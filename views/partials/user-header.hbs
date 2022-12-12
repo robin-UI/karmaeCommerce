@@ -40,7 +40,6 @@
 								<a href="#" class="dropdown-toggle primary-btn" data-toggle="dropdown" role="button" aria-haspopup="true"
 								 aria-expanded="false" style=" padding: 0 10px; border-radius: 0px;" >Login / SignUp</a>
 								<ul class="dropdown-menu">
-
 									<li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
 									<li class="nav-item"><a class="nav-link" href="/signup">SignUp</a></li>
 								</ul>
@@ -49,7 +48,9 @@
 						</ul>
 						
 						<ul class="nav navbar-nav navbar-right">
-							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"></span></a></li>
+							<li class="nav-item"><a href="/cart" class="cart"><span class="ti-bag"></span>{{#if userLog.username}}
+                          	<span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">{{cartCount}}</span>
+                      		{{/if}}</a></li>
 							<li class="nav-item"><a href="/wishlist" class="cart"><span class="lnr lnr-heart"></span></a></li>
 							<li class="nav-item">
 								<button class="search"><span class="lnr lnr-magnifier" id="search"></span></button>
