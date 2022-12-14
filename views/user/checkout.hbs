@@ -35,8 +35,8 @@
                             {{#each address}}
                             <div class="p-0 form-check">
                                 <div class="card border border-dark mb-3 rounded-0">
-                                            <input onClick="setAddress({{this.addressList.index}})" class="form-check-input mx-1" type="radio" name="gridRadios" id="gridRadios1" value="option1" style="cursor: pointer;">
-                                    <div class="card-header " id="{{this.addressList.index}}{{this.addressList.Streetname}}">
+                                            <input onclick="setAddress({{this.addressList.index}})" class="form-check-input mx-1" type="radio" name="gridRadios" id="gridRadios1" value="option1" style="cursor: pointer;">
+                                    <div class="card-header ">
                                         Select Address
                                        
                                         {{!-- <input class="radion_btn mx-2" type="radio"
@@ -44,10 +44,10 @@
                                         > --}}
                                     </div>
                                     <div class="card-body text-dark">
-                                        <p class="card-text" id="streetname" > {{this.addressList.Streetname}}</p>
-                                        <p class="card-text" id="housename" >{{this.addressList.Housename}}</p>
-                                        <p class="card-text" id="state" >{{this.addressList.State}}</p>
-                                        <p class="card-text" id="pin" >{{this.addressList.Pin}}</p>
+                                        <p class="card-text" id="{{this.addressList.index}}Streetname" > {{this.addressList.Streetname}}</p>
+                                        <p class="card-text" id="{{this.addressList.index}}Housename" >{{this.addressList.Housename}}</p>
+                                        <p class="card-text" id="{{this.addressList.index}}State" >{{this.addressList.State}}</p>
+                                        <p class="card-text" id="{{this.addressList.index}}Pin" >{{this.addressList.Pin}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -199,7 +199,7 @@ function razorpayPayment(order){
     key: "rzp_test_uElih1SHqlgkmN", // Enter the Key ID generated from the Dashboard
     amount: order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
     currency: "INR",
-    name: "Cozmo",
+    name: "Karma Commerce",
     description: "Test Transaction",
     image: "https://example.com/your_logo",
     order_id: order.id,  //This is a sample Order ID. Pass the `id` obtained in the response of Step 1

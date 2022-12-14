@@ -150,16 +150,17 @@ function removeWishlist(proId, name) {
   });
 }
 
-function setAddress(data) {
-  let Streetname = document.getElementById("streetname").innerText
-  let housename = document.getElementById("housename").innerText
-  let state = document.getElementById("state").innerText
-  let pin = document.getElementById("pin").innerText
-  
+function setAddress(index) {
+  let Streetname = document.getElementById(index+"Streetname").innerText
+  let housename = document.getElementById(index+"Housename").innerText
+  let state = document.getElementById(index+"State").innerText
+  let pin = document.getElementById(index+"Pin").innerText
+ 
+  console.log(pin)
   $.ajax({
     url: "/setAddress",
     data: {
-      index: data - 1,
+      index: index - 1,
       Streetname: Streetname,
       housename: housename,
       state: state,
