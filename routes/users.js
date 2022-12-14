@@ -34,7 +34,7 @@ const verifyLogin = async (req, res, next) => {
 
 const verifyCartCount = (req, res, next) => {
   if (req.session.cartCount) next();
-  else res.redirect("/checkout");
+  else res.redirect("/shop");
 };
 
 router.get("/login", (req, res) => {
@@ -63,10 +63,10 @@ router.post("/login", (req, res) => {
     } else if (response.status) {
       req.session.user = response.user;
       req.session.loggedIn = true;
-      res.redirect("/checkout");
+      res.redirect("/shop");
     } else {
       req.session.loginErr = true;
-      res.redirect("/checkout");
+      res.redirect("/shop");
     }
   });
 });
@@ -502,7 +502,6 @@ router.get("/checkout", verifyLogin, verifyCartCount, async (req, res) => {
     total = req.session.couponedAmount.grandtotal;
   }
   userHelpers.getUserAddress(userLog._id).then((address) => {
-    console.log(address);
     res.render("user/checkout", {
       products,
       address,
@@ -566,6 +565,7 @@ router.get("/place-order", verifyLogin, verifyCartCount, async (req, res) => {
 router.post("/place-order", verifyLogin, async (req, res) => {
   let userLog = req.session.user;
   let deliveryAddress = req.session.checkoutAddress;
+  console.log(deliveryAddress);
   let walletBalance = req.session?.walletBalance;
   let products = await cartHelpers.getCartProductList(userLog._id);
   let totalPrice = await cartHelpers.getTotalAmount(userLog._id);

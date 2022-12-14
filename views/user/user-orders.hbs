@@ -1,0 +1,166 @@
+<!-- Start Banner Area -->
+<section class="banner-area organic-breadcrumb">
+    <div class="container">
+        <div class="breadcrumb-banner d-flex flex-wrap align-items-center justify-content-end">
+            <div class="col-first">
+                <h1>Login/Register</h1>
+                <nav class="d-flex align-items-center">
+                    <a href="/">Home<span class="lnr lnr-arrow-right"></span></a>
+                    <a href="">Your order</a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Banner Area -->
+
+
+
+<!--================Login Box Area =================-->
+<section class="login_box_area section_gap">
+    <div class="container">
+              <div class="row">
+        <div class="col-lg-12">
+          <div class="myaccount-page-wrapper">
+            <div class="row">
+
+              <div class="col-lg-12 col-md-12">
+                <div class="tab-content" id="nav-tabContent">
+                  <div
+                    class="tab-pane fade show active"
+                    id="dashboad"
+                    role="tabpanel"
+                    aria-labelledby="dashboad-tab"
+                  >
+                    <div class="myaccount-content">
+                      <h2 class="text-center text-secondary">Orders</h2>
+                      <div class="myaccount-content">
+                        {{#if orders}}
+                        <table class="table table-bordered">
+                          <thead class="thead-light">
+                            <tr>
+                              <th>Date</th>
+                              <th>Address</th>
+                              <th>Pin</th>
+                              <th>Amount</th>
+                              <th>Via</th>
+                              <th>Status</th>
+                              <th>Action</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {{#each orders}}
+                              <tr>
+                                <td>{{this.dateShort}} </td>
+                                <td>{{this.address.housename}},{{this.address.Streetname}} </td>
+                                <td>{{this.address.pin}}</td>
+                                <td>₹ {{this.totalAmount}}</td>
+                                <td>{{this.paymentMethod}}</td>
+                                <td>{{this.paymentstatus}}</td>
+
+                                <td>
+                                  <div class="dropdown">
+                                      <button class="btn btn-sm btn-secondary dropdown-toggle" style="background-color:#ebd932; border:none" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        view Details
+                                      </button>
+                                      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li><a class="dropdown-item btn-sm" href="/view-order-details/{{this._id}}">Order Details</a></li>
+                                        {{#if this.cancel}}
+                                        {{else}}
+                                        <li><button class="dropdown-item btn-sm" onclick="returnOrder('{{this._id}}','Return')" >Return Order</button></li>
+                                        {{#if this.delivered}}
+                                           {{else}}
+                                           {{#if this.return}}
+                                           {{else}}
+                                          <li><button class="dropdown-item btn-sm" onclick="cancelOrder('{{this._id}}','cancelled','{{this.paymentMethod}}','{{this.totalAmount}}', '{{this._id}}')" style="color:red ;">Cancel Order</button></li>
+                                           {{/if}}
+                                        {{/if}}
+                                        
+                                        {{/if}}
+                                      </ul>
+                                    </div>
+                                </td>
+                              </tr>
+                            {{/each}}
+                          </tbody>
+                        </table>
+                       {{else}}
+                       <h3 class="text-center">No Orders Yet</h3>
+                       {{/if}}
+                      </div>
+
+                    </div>
+                  </div>
+                  <div
+                    class="tab-pane fade"
+                    id="orders"
+                    role="tabpanel"
+                    aria-labelledby="orders-tab"
+                  >
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
+
+
+<script>
+function cancelOrder(orderId,status,paymentMethod,total,order) {
+   swal({
+    text:'Are you sure to '+ status+ ' this order',
+    // buttons: true,
+    // dangerMode: true
+   }).then((willCancel)=>{
+    if(willCancel){
+      $.ajax({
+        url: "/user-cancel-order",
+        data: {
+          order:orderId,
+          status: status,
+          paymentMethod: paymentMethod,
+          total: total,
+          orderId: order
+        },
+        method: "post",
+        success: (response) => {
+          if (response.acknowledged) {
+            location.reload();
+          }
+        },
+      })
+    }
+    
+   })
+  }
+
+  function returnOrder(orderId,status) {
+   swal({
+    text:'Are you sure to '+ status+ ' this order',
+    // buttons: true,
+    // dangerMode: true
+   }).then((willCancel)=>{
+    if(willCancel){
+      $.ajax({
+        url: "/return-order",
+        data: {
+          order:orderId,
+          status: status
+        },
+        method: "post",
+        success: (response) => {
+          if (response.acknowledged) {
+            location.reload();
+          }
+        },
+      })
+    }
+    
+   })
+  }
+</script>
