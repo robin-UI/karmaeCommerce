@@ -23,6 +23,8 @@
                 <div class="col-lg-8">
                     {{!-- Add Address --}}
                     <h3>Your address</h3>
+                    {{!-- <button onClick="setAddress()" >btnclick</button> --}}
+
                         <div class="col-lg-7">
                             {{#if address}}
                             <p>Pleace select any address</p>
@@ -33,14 +35,19 @@
                             {{#each address}}
                             <div class="p-0 form-check">
                                 <div class="card border border-dark mb-3 rounded-0">
-                                    <div class="card-header  py-0"><input class="radion_btn mx-2" type="radio"
-                                            name="checkoutAddress" value="{{this._id}}" id="flexRadioDefault1" required
-                                            checked>{{this.address.name}} {{this.address.LastName}}
+                                            <input onClick="setAddress({{this.addressList.index}})" class="form-check-input mx-1" type="radio" name="gridRadios" id="gridRadios1" value="option1" style="cursor: pointer;">
+                                    <div class="card-header " id="{{this.addressList.index}}{{this.addressList.Streetname}}">
+                                        Select Address
+                                       
+                                        {{!-- <input class="radion_btn mx-2" type="radio"
+                                        name="checkoutAddress" value="{{this.addressList.index}}" onclick="setAddress("dhfi")" id="flexRadioDefault1" 
+                                        > --}}
                                     </div>
                                     <div class="card-body text-dark">
-                                        <p class="card-text">{{this.address.add1}} {{this.address.add2}}</p>
-                                        <p class="card-text">{{this.address.city}} {{this.address.states}}</p>
-                                        <p class="card-text">{{this.address.country}} {{this.address.pincode}}</p>
+                                        <p class="card-text" id="streetname" > {{this.addressList.Streetname}}</p>
+                                        <p class="card-text" id="housename" >{{this.addressList.Housename}}</p>
+                                        <p class="card-text" id="state" >{{this.addressList.State}}</p>
+                                        <p class="card-text" id="pin" >{{this.addressList.Pin}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -57,52 +64,26 @@
                             <form class="row contact_form" action="/add-address" method="post" novalidate="novalidate"
                                 enctype="application/x-www-form-urlencoded">
                                 <div class="col-md-6 form-group p_star">
-                                    <label for="Name">Name</label>
-                                    <input type="text" class="form-control" id="first" name="name"
-                                        value="{{user.name}}">
+                                    <label for="Name">House Name</label>
+                                    <input type="text" class="form-control" id="first" name="Housename"
+                                        onkeyup="validatecPin()" required>
                                 </div>
                                 <div class="col-md-6 form-group p_star">
-                                    <label for="Last Name">Last Name</label>
-                                    <input type="text" class="form-control" id="last" name="LastName">
+                                    <label for="Last Name">Streat Name</label>
+                                    <input type="text" class="form-control" id="last" name="Streetname" 
+                                        onkeyup="validatecPin()" required>
                                 </div>
                                 <div class="col-md-6 form-group p_star">
-                                    <label for="Number">Number</label>
-                                    <input type="text" class="form-control" id="number" name="number"
-                                        value="{{user.phone}}">
+                                    <label for="Number">State</label>
+                                    <input type="text" class="form-control" id="State" name="State"
+                                       onkeyup="validatecPin()" required>
                                 </div>
                                 <div class="col-md-6 form-group p_star">
-                                    <label for="Email">Email</label>
-                                    <input type="text" class="form-control" id="email" name="compemailany"
-                                        value="{{user.email}}">
+                                    <label for="Email">PIN</label>
+                                    <input type="text" class="form-control" id="email" name="Pin"
+                                        onkeyup="validatecPin()" required>
                                 </div>
-                                <div class="col-md-12 form-group p_star border">
-                                    <label>
-                                        Countries
-                                        <input mbsc-input id="demo-country-picker" data-dropdown="true"
-                                            data-input-style="box" data-label-style="stacked" name="country"
-                                            placeholder="Please select..." />
-                                    </label>
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <label for="Address line 01">Address line 01</label>
-                                    <input type="text" class="form-control" id="add1" name="add1">
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <label for="Address line 02">Address line 02</label>
-                                    <input type="text" class="form-control" id="add2" name="add2">
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <label for="Town/City">Town/City</label>
-                                    <input type="text" class="form-control" id="city" name="city">
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-                                    <label for="District">District</label>
-                                    <input type="text" class="form-control" id="city" name="District">
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <label for="Postcode/ZIP">Postcode/ZIP</label>
-                                    <input type="text" class="form-control" id="zip" name="zip">
-                                </div>
+
                                 <div class="col-md-12 form-group">
                                     <button class="primary-btn border-0  rounded-0" type="submit">Add address</button>
                                 </div>
@@ -122,14 +103,14 @@
                             {{/each}}
                         </ul>
                         <ul class="list list_2">
-                            <li><a href="#">Subtotal <span>₹ {{total}}.00</span></a></li>
-                            <li><a href="#">Descount <span>Flat rate: ₹ 00.00</span></a></li>
-                            <li><a href="#">Wallet amoutnt <span>₹ {{user.wallet}}00.00</span></a></li>
-                            <li><a href="#">Total <span>₹ {{total}}.00</span></a></li>
+                            <li><a >Subtotal <span>₹ {{total}}.00</span></a></li>
+                            <li><a >Descount <span>Flat rate: ₹ 00.00</span></a></li>
+                            <li><a >Wallet amoutnt <span>₹ {{user.wallet}}00.00</span></a></li>
+                            <li><a s>Total <span>₹ {{total}}.00</span></a></li>
                         </ul>
                         {{!-- <div class="payment_item">
                             <div class="radion_btn">
-                                <input type="radio" id="f-option5" name="paymentMethod" value="wallet" required>
+                                <input type="radio" id="f-option5" name="method" value="wallet" required>
                                 <label for="f-option5">Pay using Wallet</label>
                                 <div class="check"></div>
                             </div>
@@ -137,7 +118,7 @@
                         </div> --}}
                         <div class="payment_item">
                             <div class="radion_btn">
-                                <input type="radio" id="f-option5" name="paymentMethod" value="COD" required>
+                                <input type="radio" id="f-option5" name="method" value="COD" required>
                                 <label for="f-option5">Cash on Delivary</label>
                                 <div class="check"></div>
                             </div>
@@ -145,7 +126,7 @@
                         </div>
                         <div class="payment_item active">
                             <div class="radion_btn">
-                                <input type="radio" id="f-option6" name="paymentMethod" value="paypal">
+                                <input type="radio" id="f-option6" name="method" value="paypal">
                                 <label for="f-option6">Paypal </label>
                                 <img src="img/product/card.jpg" alt="">
                                 <div class="check"></div>
@@ -155,7 +136,7 @@
                         </div>
                         <div class="payment_item active">
                             <div class="radion_btn">
-                                <input type="radio" id="f-option7" name="paymentMethod" value="razorpay">
+                                <input type="radio" id="f-option7" name="method" value="razorpay">
                                 <label for="f-option7">RazerPay</label>
                                 <img src="/img/Razorpay_logo.svg.png" alt="">
                                 <div class="check"></div>
@@ -177,10 +158,8 @@
 </section>
 <!--================End Checkout Area =================-->
 
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script> 
 <script>
-
   $("#checkout").submit((event) => {
   event.preventDefault();
   $.ajax({
@@ -190,13 +169,13 @@
     success: (response) => {
       if (response.cod) {
         swal("Success!", "order created", "success",{button:false, timer:800}).then(()=>{
-          location.href = "/store";
+          location.href = "/shop";
         })
       }else if(response.walletLow){
           swal("Info!", "Wallet insufficient balance", "warning")
       }else if( response.walletSuccess){
         swal("Success!", "order created", "success",{button:false, timer:800}).then(()=>{
-          location.href = "/store";
+          location.href = "/shop";
         })
       }
       else if(response.razorpay == true){
@@ -257,7 +236,7 @@ function verifyPayment(payment, order){
       method: 'post',
       success: (response)=>{
         if (response.razor){
-          location.href='/store'
+          location.href='/shop'
         }else {
           alert('payment failed')
         }
@@ -265,40 +244,5 @@ function verifyPayment(payment, order){
 
     })
 }
-
-
-$('#coupon-form').submit((e)=>{
-  e.preventDefault()
-  $.ajax({
-    url:'/apply-coupon',
-    method: 'post',
-    data:$('#coupon-form').serialize(),
-    success: (amount) => {
-        console.log(amount)
-        if (amount.status) {
-                swal("Success!", "Coupon Applied", "success").then(() => {
-                    document.getElementById('offer-price').innerHTML = amount.discountamount
-                    document.getElementById('total-price').innerHTML = amount.grandtotal
-                })
-            } else if (amount.used) {
-                swal("Info!", "Coupon already used!", "warning").then(() => {
-                    document.getElementById('offer-price').innerHTML = 0
-                })
-            } else if (amount.expired) {
-                swal("Info!", "Coupon Expired", "warning").then(() => {
-                    document.getElementById('offer-price').innerHTML = 0
-                })
-            } else if (amount.small) {
-                swal("Info!", "Total amount should be within 1000 and 5000 to apply coupon", "warning").then(() => {
-                    document.getElementById('offer-price').innerHTML = 0
-                })
-            } else {
-                swal("Oops!", "Coupon does not exist", "error").then(() => {
-                    document.getElementById('offer-price').innerHTML = 0
-                })
-            }
-    }
-  })
-})
 
 </script>

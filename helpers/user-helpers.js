@@ -353,25 +353,26 @@ module.exports = {
     },
 
     getUserAddress: (userId) => {
+        // console.log(userId)
         return new Promise(async (resolve, reject) => {
             let address = await db
                 .get()
-                .collection(collection.ADDRESS_USER)
+                .collection(collection.ADDRESS_COLLECTION)
                 .aggregate([
                     {
-                        $match: { user: objectId(userId) },
+                      $match: { user: objectId(userId) },
                     },
                     {
-                        $unwind: "$addressDetail",
+                      $unwind: "$addressList",
                     },
                     {
-                        $project: {
-                            addressDetail: 1,
-                        },
+                      $project: {
+                        addressList: 1,
+                      },
                     },
                 ])
                 .toArray();
-
+            console.log(address)
             resolve(address);
         });
     },
@@ -496,13 +497,13 @@ module.exports = {
             let Address = await db
                 .get()
                 .collection(collection.ADDRESS_COLLECTION)
-                .findOne({ _id: objectId(userId) });
+                .findOne({ user: objectId(userId) });
             if (Address) {
                 address.index = Address.addressList.length + 1;
                 db.get()
                     .collection(collection.ADDRESS_COLLECTION)
                     .updateOne(
-                        { _id: objectId(userId) },
+                        { user: objectId(userId) },
                         {
                             $push: { addressList: address },
                         }
@@ -514,7 +515,7 @@ module.exports = {
                 address.index = 1;
                 db.get()
                     .collection(collection.ADDRESS_COLLECTION)
-                    .insertOne({ _id: objectId(userId), addressList: [address] })
+                    .insertOne({ user: objectId(userId), addressList: [address] })
                     .then((response) => {
                         resolve(response);
                     });

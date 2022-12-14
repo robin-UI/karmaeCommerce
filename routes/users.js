@@ -34,7 +34,7 @@ const verifyLogin = async (req, res, next) => {
 
 const verifyCartCount = (req, res, next) => {
   if (req.session.cartCount) next();
-  else res.redirect("/shop");
+  else res.redirect("/checkout");
 };
 
 router.get("/login", (req, res) => {
@@ -63,10 +63,10 @@ router.post("/login", (req, res) => {
     } else if (response.status) {
       req.session.user = response.user;
       req.session.loggedIn = true;
-      res.redirect("/shop");
+      res.redirect("/checkout");
     } else {
       req.session.loginErr = true;
-      res.redirect("/login");
+      res.redirect("/checkout");
     }
   });
 });
@@ -240,7 +240,7 @@ router.get("/", async function (req, res, next) {
       }
     }
   }
-  console.log(userLog)
+ 
   res.render("user/user-dashbord", {
     userHead: true,
     userLog,
@@ -495,12 +495,18 @@ router.post("/change-product-quantity", verifyLogin, (req, res, next) => {
 router.get("/checkout", verifyLogin, verifyCartCount, async (req, res) => {
   let userLog = req.session.user;
   let cartCount = req.session.cartCount;
+  let wallet = await userHelpers.getWallet(userLog._id);
   let products = await cartHelpers.getCartProducts(userLog._id);
   let total = await cartHelpers.getTotalAmount(userLog._id);
+  if (req.session.couponedAmount) {
+    total = req.session.couponedAmount.grandtotal;
+  }
   userHelpers.getUserAddress(userLog._id).then((address) => {
+    console.log(address);
     res.render("user/checkout", {
       products,
       address,
+      wallet,
       total,
       userLog,
       cartCount,
@@ -525,15 +531,18 @@ router.post(
 //add address checkout
 router.post("/add-address", (req, res) => {
   let userLog = req.session.user;
+  // console.log(userLog);
   userHelpers.addAdrress(req.body, userLog._id).then((address) => {
     res.redirect("/checkout");
   });
 });
 
-router.post("/checkout", verifyLogin, verifyCartCount, (req, res) => {
+router.post("/setAddress", verifyLogin, verifyCartCount, (req, res) => {
   req.body.name = req.session.user.username;
+  console.log("inside set address")
+  console.log(req.body);
   req.session.checkoutAddress = req.body;
-  res.redirect("/place-order");
+  res.json({success: true})
 });
 
 router.get("/place-order", verifyLogin, verifyCartCount, async (req, res) => {

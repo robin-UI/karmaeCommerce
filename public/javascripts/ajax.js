@@ -149,3 +149,27 @@ function removeWishlist(proId, name) {
     },
   });
 }
+
+function setAddress(data) {
+  let Streetname = document.getElementById("streetname").innerText
+  let housename = document.getElementById("housename").innerText
+  let state = document.getElementById("state").innerText
+  let pin = document.getElementById("pin").innerText
+  
+  $.ajax({
+    url: "/setAddress",
+    data: {
+      index: data - 1,
+      Streetname: Streetname,
+      housename: housename,
+      state: state,
+      pin: pin 
+    },
+    method: "POST",
+    success: (response) => {
+      if(response.success){
+        swal("Address set successfully")
+      }
+    }
+  })
+}
